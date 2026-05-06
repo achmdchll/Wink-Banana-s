@@ -102,6 +102,70 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+    // --- Extra Rame Interactions (tuned for performance & accessibility) ---
+    const prefersReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    // 1) Spawn tiny particles in hero area for visual 'rame' effect — disabled when user prefers reduced motion
+    const heroArea = document.querySelector('.hero-clean') || document.querySelector('.hero');
+    if (heroArea && !prefersReduced) {
+        let activeParticles = 0;
+        function spawnParticle(x, y) {
+            if (activeParticles >= 6) return; // cap concurrent particles
+            activeParticles++;
+            const p = document.createElement('div');
+            p.className = 'particle';
+            p.style.left = (x - 5) + 'px';
+            p.style.top = (y - 5) + 'px';
+            p.style.background = `hsl(${Math.random() * 40 + 300}, 80%, ${50 + Math.random()*8}%)`;
+            heroArea.appendChild(p);
+            p.addEventListener('animationend', () => {
+                p.remove();
+                activeParticles = Math.max(0, activeParticles - 1);
+            }, { once: true });
+        }
+
+        // gentle continuous spawn at random positions (reduced frequency)
+        const particleInterval = setInterval(() => {
+            const rect = heroArea.getBoundingClientRect();
+            const x = Math.random() * rect.width;
+            const y = Math.random() * rect.height * 0.7 + 20;
+            spawnParticle(x + rect.left, y + rect.top);
+        }, 900);
+
+        // parallax effect on mouse move (reduced magnitude)
+        const heroImage = heroArea.querySelector('.hero-image-clean img') || heroArea.querySelector('.hero-image img');
+        heroArea.addEventListener('mousemove', (e) => {
+            if (!heroImage) return;
+            const rect = heroArea.getBoundingClientRect();
+            const px = (e.clientX - rect.left) / rect.width - 0.5;
+            const py = (e.clientY - rect.top) / rect.height - 0.5;
+            // smaller transform for comfort
+            heroImage.style.transform = `translate(${px * 6}px, ${py * 5}px) rotate(${px * 1}deg)`;
+        }, { passive: true });
+        heroArea.addEventListener('mouseleave', () => {
+            if (heroImage) heroImage.style.transform = '';
+        });
+    }
+
+    // 2) Confetti effect when CTA is clicked — reduce count and respect reduced motion
+    document.querySelectorAll('.btn-primary, .pulse-btn-rame').forEach(btn => {
+        btn.classList.add('pulse-strong');
+        btn.addEventListener('click', (e) => {
+            if (prefersReduced) return; // do not show confetti
+            const rect = btn.getBoundingClientRect();
+            const pieces = 6; // reduced pieces
+            for (let i = 0; i < pieces; i++) {
+                const c = document.createElement('div');
+                c.className = 'confetti';
+                c.style.left = (rect.left + Math.random() * rect.width) + 'px';
+                c.style.top = (rect.top + Math.random() * rect.height) + 'px';
+                c.style.background = `linear-gradient(45deg, hsl(${Math.random()*60+30},80%,60%), hsl(${Math.random()*40+300},80%,60%))`;
+                document.body.appendChild(c);
+                setTimeout(() => c.remove(), 900 + Math.random() * 600);
+            }
+        });
+    });
+
     // 5. Add staggered delay to feature, product cards, and testimonials
     const featureCards = document.querySelectorAll('.features-grid .feature-card-clean');
     featureCards.forEach((card, index) => {
@@ -344,5 +408,71 @@ document.addEventListener('DOMContentLoaded', () => {
                 }, 3000);
             }, 1000);
         });
+    }
+
+    // 7. Product Slider Logic
+    const sliderContainer = document.getElementById('products-slider');
+    const btnPrev = document.getElementById('btn-prev-product');
+    const btnNext = document.getElementById('btn-next-product');
+
+    // Run slider logic if slider exists. Buttons are optional.
+    if (sliderContainer) {
+        const scrollAmount = 355; // width of card (320px) + gap (35px)
+        
+        // Clone items for seamless loop
+        const originalItems = [...sliderContainer.children];
+        // Append 2 extra sets to guarantee enough width for seamless scrolling
+        for (let i = 0; i < 2; i++) {
+            originalItems.forEach(item => {
+                const clone = item.cloneNode(true);
+                sliderContainer.appendChild(clone);
+            });
+        }
+
+        let isInteracting = false;
+        
+        // Continuous smooth scroll
+        let currentScrollPos = sliderContainer.scrollLeft;
+        
+        function autoScroll() {
+            if (!isInteracting) {
+                currentScrollPos += 2; // Speed multiplier (2 is twice as fast as before)
+                sliderContainer.scrollLeft = currentScrollPos;
+                
+                // If we've scrolled past one full original set, loop back seamlessly
+                const singleSetWidth = originalItems.length * scrollAmount;
+                if (currentScrollPos >= singleSetWidth) {
+                    currentScrollPos -= singleSetWidth;
+                    sliderContainer.scrollLeft = currentScrollPos;
+                }
+            } else {
+                // Keep variable synced if user manually scrolls/clicks
+                currentScrollPos = sliderContainer.scrollLeft;
+            }
+            requestAnimationFrame(autoScroll);
+        }
+        requestAnimationFrame(autoScroll);
+
+        // Do not pause on mouse hover — keep continuous scrolling when cursor is over the area.
+        // Keep touch handlers so mobile users can still interact.
+        sliderContainer.addEventListener('touchstart', () => isInteracting = true);
+        sliderContainer.addEventListener('touchend', () => isInteracting = false);
+
+        // Attach click handlers only if buttons exist
+        if (btnNext) {
+            btnNext.addEventListener('click', () => {
+                sliderContainer.style.scrollBehavior = 'smooth';
+                sliderContainer.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+                setTimeout(() => sliderContainer.style.scrollBehavior = 'auto', 400);
+            });
+        }
+
+        if (btnPrev) {
+            btnPrev.addEventListener('click', () => {
+                sliderContainer.style.scrollBehavior = 'smooth';
+                sliderContainer.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+                setTimeout(() => sliderContainer.style.scrollBehavior = 'auto', 400);
+            });
+        }
     }
 });

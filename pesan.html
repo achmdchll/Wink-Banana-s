@@ -10,7 +10,7 @@
     <style>
         .checkout-section {
             padding: 130px 0 80px;
-            background-color: var(--bg-alt);
+            background: transparent;
             min-height: 100vh;
         }
         
@@ -38,10 +38,12 @@
         }
 
         .checkout-card {
-            background: white;
+            background: rgba(255, 255, 255, 0.45);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
             border-radius: var(--radius-md);
             box-shadow: var(--shadow-md);
-            border: 1px solid var(--border-color);
+            border: 1px solid rgba(255, 255, 255, 0.3);
             overflow: hidden;
         }
 
@@ -121,7 +123,7 @@
             outline: none;
             border-color: var(--primary-color);
             background-color: white;
-            box-shadow: 0 0 0 4px rgba(255, 184, 0, 0.15);
+            box-shadow: 0 0 0 4px rgba(255, 105, 180, 0.15);
         }
 
         textarea.form-control {
@@ -166,8 +168,8 @@
 
         .flavor-card input:checked ~ .flavor-content {
             border-color: var(--primary-color);
-            background: #FFFDF5;
-            box-shadow: 0 4px 12px rgba(255, 184, 0, 0.15);
+            background: #fdf2f8;
+            box-shadow: 0 4px 12px rgba(255, 105, 180, 0.15);
         }
 
         .flavor-icon {
@@ -324,7 +326,7 @@
         }
 
         .total-preview {
-            background: #FFFDF5;
+            background: #fdf2f8;
             border: 1px dashed var(--primary-color);
             padding: 20px;
             border-radius: var(--radius-sm);
@@ -345,7 +347,7 @@
 
         .submit-btn {
             width: 100%;
-            background-color: #25D366 !important;
+            background-color: #FF69B4 !important;
             color: #FFFFFF !important;
             padding: 16px;
             border: none;
@@ -359,13 +361,13 @@
             gap: 10px;
             transition: var(--transition);
             margin-top: 20px;
-            box-shadow: 0 6px 15px rgba(37, 211, 102, 0.2);
+            box-shadow: 0 6px 15px rgba(255, 105, 180, 0.2);
         }
 
         .submit-btn:hover {
-            background-color: #1EBE57 !important;
+            background-color: #FF1493 !important;
             transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(37, 211, 102, 0.4);
+            box-shadow: 0 8px 25px rgba(255, 105, 180, 0.4);
         }
 
         .back-link {
@@ -426,8 +428,10 @@
     </header>
 
     <!-- Checkout Section -->
-    <section class="checkout-section animate-entrance">
-        <div class="container">
+    <section class="checkout-section animate-entrance" style="position: relative; overflow: hidden;">
+        <!-- Floating decorative emojis removed -->
+
+        <div class="container" style="position: relative; z-index: 2;">
             <a href="index.html" class="back-link"><i class="fas fa-arrow-left"></i> Kembali ke Halaman Utama</a>
             
             <div class="page-header">
@@ -466,62 +470,62 @@
                             <label>Pilih Varian Rasa *</label>
                             <div class="flavor-options">
                                 <label class="flavor-card">
-                                    <input type="radio" name="rasa" value="Original" data-price="15000" required>
+                                    <input type="checkbox" name="rasa" value="Original" data-price="10000">
                                     <div class="flavor-content">
                                         <div class="flavor-icon f-ori"><i class="fas fa-seedling"></i></div>
                                         <div class="flavor-info">
                                             <h4>Original Manis Gurih</h4>
+                                            <p>Rp 10.000</p>
+                                        </div>
+                                    </div>
+                                </label>
+                                <label class="flavor-card">
+                                    <input type="checkbox" name="rasa" value="Coklat" data-price="15000">
+                                    <div class="flavor-content">
+                                        <div class="flavor-icon f-choc"><i class="fas fa-cookie-bite"></i></div>
+                                        <div class="flavor-info">
+                                            <h4>Cokelat Lumer</h4>
                                             <p>Rp 15.000</p>
                                         </div>
                                     </div>
                                 </label>
                                 <label class="flavor-card">
-                                    <input type="radio" name="rasa" value="Coklat" data-price="18000">
-                                    <div class="flavor-content">
-                                        <div class="flavor-icon f-choc"><i class="fas fa-cookie-bite"></i></div>
-                                        <div class="flavor-info">
-                                            <h4>Cokelat Lumer</h4>
-                                            <p>Rp 18.000</p>
-                                        </div>
-                                    </div>
-                                </label>
-                                <label class="flavor-card">
-                                    <input type="radio" name="rasa" value="Matcha" data-price="20000">
+                                    <input type="checkbox" name="rasa" value="Matcha" data-price="15000">
                                     <div class="flavor-content">
                                         <div class="flavor-icon f-matcha" style="color: #4CAF50; background-color: rgba(76, 175, 80, 0.1);"><i class="fas fa-leaf"></i></div>
                                         <div class="flavor-info">
                                             <h4>Matcha Greentea</h4>
-                                            <p>Rp 20.000</p>
+                                            <p>Rp 15.000</p>
                                         </div>
                                     </div>
                                 </label>
                                 <label class="flavor-card">
-                                    <input type="radio" name="rasa" value="Tiramisu" data-price="20000">
+                                    <input type="checkbox" name="rasa" value="Tiramisu" data-price="15000">
                                     <div class="flavor-content">
                                         <div class="flavor-icon f-tiramisu" style="color: #8D6E63; background-color: rgba(141, 110, 99, 0.1);"><i class="fas fa-coffee"></i></div>
                                         <div class="flavor-info">
                                             <h4>Tiramisu Delight</h4>
-                                            <p>Rp 20.000</p>
+                                            <p>Rp 15.000</p>
                                         </div>
                                     </div>
                                 </label>
                                 <label class="flavor-card">
-                                    <input type="radio" name="rasa" value="Taro" data-price="18000">
+                                    <input type="checkbox" name="rasa" value="Taro" data-price="15000">
                                     <div class="flavor-content">
                                         <div class="flavor-icon f-taro" style="color: #9C27B0; background-color: rgba(156, 39, 176, 0.1);"><i class="fas fa-candy-cane"></i></div>
                                         <div class="flavor-info">
                                             <h4>Sweet Taro</h4>
-                                            <p>Rp 18.000</p>
+                                            <p>Rp 15.000</p>
                                         </div>
                                     </div>
                                 </label>
                                 <label class="flavor-card" style="grid-column: 1 / -1;">
-                                    <input type="radio" name="rasa" value="Paket Bundling 5 Rasa" data-price="85000">
+                                    <input type="checkbox" name="rasa" value="Paket Bundling 5 Rasa" data-price="70000">
                                     <div class="flavor-content">
                                         <div class="flavor-icon f-mix"><i class="fas fa-box-open"></i></div>
                                         <div class="flavor-info">
                                             <h4>Paket Bundling 5 Rasa Lengkap</h4>
-                                            <p>Rp 85.000 <span style="text-decoration: line-through; color: var(--text-muted); font-size: 0.8em; margin-left: 5px;">Rp 90.000</span></p>
+                                            <p>Rp 70.000</p>
                                         </div>
                                     </div>
                                 </label>
@@ -600,10 +604,11 @@
                         <div class="total-preview">
                             <p>Estimasi Harga Produk</p>
                             <h3 id="display-total">Rp 0</h3>
+                            <p id="discount-note" style="font-size:0.9rem; color:var(--text-muted); margin-top:8px;"></p>
                             <p style="font-size: 0.75rem; color: #999; margin-top: 5px;">*Belum termasuk ongkir</p>
                         </div>
 
-                        <button type="submit" class="submit-btn">
+                        <button type="submit" class="submit-btn pulse-btn-rame">
                             <i class="fab fa-whatsapp" style="font-size: 1.3rem;"></i> Lanjut ke WhatsApp
                         </button>
                         <p style="text-align: center; font-size: 0.8rem; color: #999; margin-top: 15px;">
@@ -616,18 +621,14 @@
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="footer" style="padding-top: 0;">
-        <div class="footer-bottom">
-            <div class="container footer-bottom-inner" style="justify-content: center;">
-                <p>&copy; 2026 Wink Banana's UMKM. Sistem Pemesanan Langsung.</p>
-            </div>
-        </div>
-    </footer>
-
     <script>
+        // Ensure page always starts at top on load/refresh
+        if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+        window.addEventListener('beforeunload', () => { window.scrollTo(0, 0); });
+
         // Preloader Logic
         window.addEventListener('load', () => {
+            window.scrollTo(0, 0);
             const preloader = document.getElementById('preloader');
             if (preloader) {
                 setTimeout(() => {
@@ -663,23 +664,41 @@
             calculateTotal();
         });
 
-        // Price Logic
-        const radioRasa = document.querySelectorAll('input[name="rasa"]');
+        // Price Logic (support multiple selections)
+        const variantInputs = document.querySelectorAll('input[name="rasa"]');
         const displayTotal = document.getElementById('display-total');
-        let currentPrice = 0;
 
-        radioRasa.forEach(radio => {
-            radio.addEventListener('change', function() {
-                currentPrice = parseInt(this.getAttribute('data-price'));
-                calculateTotal();
-            });
-        });
+        variantInputs.forEach(inp => inp.addEventListener('change', calculateTotal));
 
         function calculateTotal() {
-            if(currentPrice === 0) return;
-            const qty = parseInt(inputQty.value);
-            const total = currentPrice * qty;
-            displayTotal.innerText = 'Rp ' + total.toLocaleString('id-ID');
+            const selected = Array.from(document.querySelectorAll('input[name="rasa"]:checked'));
+            const discountNoteEl = document.getElementById('discount-note');
+            if(selected.length === 0) {
+                displayTotal.innerText = 'Rp 0';
+                if(discountNoteEl) discountNoteEl.innerText = '';
+                return;
+            }
+
+            const qty = parseInt(inputQty.value) || 1;
+            let sumPrices = 0;
+            let hasBundle = false;
+            selected.forEach(s => {
+                const p = parseInt(s.getAttribute('data-price')) || 0;
+                sumPrices += p;
+                if(s.value && s.value.toLowerCase().includes('paket')) hasBundle = true;
+            });
+
+            let total = sumPrices * qty;
+
+            if(hasBundle) {
+                const discountRate = 0.10;
+                const discounted = Math.round(total * (1 - discountRate));
+                displayTotal.innerText = 'Rp ' + discounted.toLocaleString('id-ID');
+                if(discountNoteEl) discountNoteEl.innerText = `Diskon 10% untuk paket. Harga asli Rp ${total.toLocaleString('id-ID')}`;
+            } else {
+                displayTotal.innerText = 'Rp ' + total.toLocaleString('id-ID');
+                if(discountNoteEl) discountNoteEl.innerText = '';
+            }
         }
 
         // Form Submit to WA
@@ -692,17 +711,25 @@
             const alamat = document.getElementById('alamat').value;
             const catatan = document.getElementById('catatan').value;
             
-            let rasa = "";
-            radioRasa.forEach(radio => {
-                if(radio.checked) rasa = radio.value;
-            });
-
-            if(!rasa) {
-                alert("Silakan pilih varian rasa terlebih dahulu!");
+            const selected = Array.from(document.querySelectorAll('input[name="rasa"]:checked'));
+            if(selected.length === 0) {
+                alert("Silakan pilih minimal satu varian rasa terlebih dahulu!");
                 return;
             }
-            
-            const total = currentPrice * parseInt(jumlah);
+
+            // Build variant list and compute total in same way as calculateTotal
+            const selectedNames = selected.map(s => s.value);
+            const qtyNum = parseInt(jumlah) || 1;
+            let sumPrices = 0;
+            let hasBundle = false;
+            selected.forEach(s => {
+                const p = parseInt(s.getAttribute('data-price')) || 0;
+                sumPrices += p;
+                if(s.value && s.value.toLowerCase().includes('paket')) hasBundle = true;
+            });
+
+            let total = sumPrices * qtyNum;
+            if(hasBundle) total = Math.round(total * 0.9); // apply 10% discount
             const totalStr = 'Rp ' + total.toLocaleString('id-ID');
 
             let textWa = `Halo Admin Wink Banana's, saya ingin konfirmasi pesanan saya:\n\n` +
@@ -710,7 +737,7 @@
                          `- Nama: ${nama}\n` +
                          `- No WA: ${nowa}\n\n` +
                          `*2. Detail Produk*\n` +
-                         `- Varian: ${rasa}\n` +
+                         `- Varian: ${selectedNames.join(', ')}\n` +
                          `- Jumlah: ${jumlah} bungkus\n` +
                          `- Subtotal: ${totalStr} (belum ongkir)\n\n` +
                          `*3. Pengiriman*\n` +
@@ -723,7 +750,7 @@
             textWa += `\nMohon dibantu cek ongkos kirim dan total pembayarannya. Terima kasih!`;
             
             const encodedText = encodeURIComponent(textWa);
-            const waNumber = "6281234567890"; // Ganti dengan nomor asli
+            const waNumber = "6281232615320"; // Ganti dengan nomor asli
             
             window.open(`https://wa.me/${waNumber}?text=${encodedText}`, '_blank');
         });
