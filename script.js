@@ -8,13 +8,14 @@ window.scrollTo(0, 0);
 window.addEventListener('load', () => {
     const preloader = document.getElementById('preloader');
     if (preloader) {
-        // Biarkan loading screen muncul agak lama agar terlihat efek animasi yang lebih kompleks
+        // Show loader a bit, but reduce delay on small screens for faster UX
+        const mobileDelay = window.innerWidth <= 600 ? 700 : 3000;
         setTimeout(() => {
             preloader.classList.add('fade-out');
             setTimeout(() => {
                 preloader.style.display = 'none';
-            }, 800); // Lebih lama untuk efek fade-out yang smooth
-        }, 3000); // Tahan loading screen selama 3 detik untuk animasi yang lebih kompleks
+            }, 600); // fade-out duration
+        }, mobileDelay);
     }
 });
 

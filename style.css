@@ -1024,7 +1024,7 @@ p {
     top: 0;
     left: 0;
     width: 100%;
-    height: 100%;
+    height: 100vh;
     background-color: var(--bg-main);
     z-index: 9999;
     display: flex;
@@ -1980,7 +1980,7 @@ p {
 }
 
 #preloader.premium-loader .loader-text {
-    font-size: 3.5rem;
+    font-size: clamp(1.4rem, 6vw, 3.5rem);
     font-family: 'Outfit', sans-serif;
     font-weight: 800;
     color: var(--secondary-color);
@@ -1995,7 +1995,7 @@ p {
 }
 
 #preloader.premium-loader .loader-bar-container {
-    width: 250px;
+    width: clamp(160px, 45%, 250px);
     height: 6px;
     background: rgba(255, 255, 255, 0.4);
     border-radius: 10px;
@@ -2032,4 +2032,30 @@ p {
 @keyframes pulse-subtitle-premium {
     0% { opacity: 0.5; }
     100% { opacity: 1; }
+}
+
+/* Responsive tweaks for small screens */
+@media (max-width: 600px) {
+    #preloader.premium-loader .loader-content {
+        height: 100vh;
+        padding: 20px;
+        box-sizing: border-box;
+    }
+
+    #preloader.premium-loader .loader-text {
+        margin-bottom: 12px;
+        text-align: center;
+    }
+
+    #preloader.premium-loader .loader-bar-container {
+        width: 80%;
+        max-width: 320px;
+        height: 5px;
+    }
+
+    #preloader.premium-loader .loader-subtitle {
+        font-size: 0.85rem;
+        letter-spacing: 1px;
+        text-align: center;
+    }
 }
