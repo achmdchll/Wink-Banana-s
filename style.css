@@ -70,6 +70,123 @@ img {
     padding: 0 20px;
 }
 
+/* TikTok Floating Button */
+.tiktok-btn {
+    position: fixed;
+    bottom: 170px;
+    right: 30px;
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, #000000, #25f4ee, #ff0050);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 32px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+    transition: all 0.3s ease;
+    z-index: 999;
+    text-decoration: none;
+}
+
+.tiktok-btn:hover {
+    transform: scale(1.1) translateY(-5px);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.45);
+    background: linear-gradient(135deg, #1a1a1a, #25f4ee, #ff0050);
+}
+
+.tiktok-btn:active {
+    transform: scale(0.95);
+}
+
+/* Instagram Floating Button */
+.instagram-btn {
+    position: fixed;
+    bottom: 100px;
+    right: 30px;
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 32px;
+    box-shadow: 0 8px 24px rgba(224, 36, 94, 0.35);
+    transition: all 0.3s ease;
+    z-index: 999;
+    text-decoration: none;
+}
+
+.instagram-btn:hover {
+    transform: scale(1.1) translateY(-5px);
+    box-shadow: 0 12px 32px rgba(224, 36, 94, 0.45);
+    background: linear-gradient(45deg, #f09433, #d6399f);
+}
+
+.instagram-btn:active {
+    transform: scale(0.95);
+}
+
+/* WhatsApp Floating Button */
+.whatsapp-btn {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, #25d366, #128c7e);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 32px;
+    box-shadow: 0 8px 24px rgba(37, 211, 102, 0.35);
+    transition: all 0.3s ease;
+    z-index: 999;
+    text-decoration: none;
+}
+
+.whatsapp-btn:hover {
+    transform: scale(1.1) translateY(-5px);
+    box-shadow: 0 12px 32px rgba(37, 211, 102, 0.45);
+    background: linear-gradient(135deg, #20ba61, #0f7866);
+}
+
+.whatsapp-btn:active {
+    transform: scale(0.95);
+}
+
+/* Responsive: Adjust position on mobile */
+@media (max-width: 768px) {
+    .tiktok-btn {
+        bottom: 155px;
+        right: 20px;
+        width: 55px;
+        height: 55px;
+        font-size: 28px;
+    }
+
+    .instagram-btn {
+        bottom: 85px;
+        right: 20px;
+        width: 55px;
+        height: 55px;
+        font-size: 28px;
+    }
+
+    .whatsapp-btn {
+        bottom: 20px;
+        right: 20px;
+        width: 55px;
+        height: 55px;
+        font-size: 28px;
+    }
+}
+
 /* Typography */
 h1,
 h2,
@@ -311,6 +428,168 @@ p {
 .section-header-clean h2:hover::after { animation: shimmer 1.2s linear; }
 
 @keyframes shimmer { from { left: -40%; } to { left: 140%; } }
+
+/* Carousel Scroll Animation - Directional */
+@keyframes cardSlideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(80px) rotateY(45deg) scale(0.7);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0) rotateY(0) scale(1);
+    }
+}
+
+@keyframes cardSlideOutLeft {
+    from {
+        opacity: 1;
+        transform: translateX(0) rotateY(0) scale(1);
+    }
+    to {
+        opacity: 0;
+        transform: translateX(-80px) rotateY(-45deg) scale(0.7);
+    }
+}
+
+@keyframes cardSlideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-80px) rotateY(-45deg) scale(0.7);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0) rotateY(0) scale(1);
+    }
+}
+
+@keyframes cardSlideOutRight {
+    from {
+        opacity: 1;
+        transform: translateX(0) rotateY(0) scale(1);
+    }
+    to {
+        opacity: 0;
+        transform: translateX(80px) rotateY(45deg) scale(0.7);
+    }
+}
+
+@keyframes cardScaleDown {
+    from {
+        opacity: 1;
+        transform: scale(1);
+        filter: blur(0px) brightness(1);
+    }
+    to {
+        opacity: 0.5;
+        transform: scale(0.85);
+        filter: blur(2px) brightness(0.8);
+    }
+}
+
+@keyframes cardScaleUp {
+    from {
+        opacity: 0.5;
+        transform: scale(0.85);
+        filter: blur(2px) brightness(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+        filter: blur(0px) brightness(1);
+    }
+}
+
+/* Right scroll animations */
+.product-item-clean.fade-in-right {
+    animation: cardSlideInRight 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+.product-item-clean.fade-out-left {
+    animation: cardSlideOutLeft 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+/* Left scroll animations */
+.product-item-clean.fade-in-left {
+    animation: cardSlideInLeft 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+.product-item-clean.fade-out-right {
+    animation: cardSlideOutRight 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+.product-item-clean.scale-down {
+    animation: cardScaleDown 0.4s ease-out forwards;
+}
+
+.product-item-clean.scale-up {
+    animation: cardScaleUp 0.4s ease-out forwards;
+}
+
+/* Glow effect untuk active cards */
+.product-item-clean.active {
+    box-shadow: 0 15px 50px rgba(240, 147, 202, 0.3), 
+                0 0 30px rgba(240, 147, 202, 0.2);
+}
+
+/* Product Item Animations */
+@keyframes slideInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes productImageZoom {
+    from {
+        opacity: 0.8;
+        transform: scale(1);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1.05);
+    }
+}
+
+@keyframes productCardGlow {
+    0%, 100% {
+        box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    }
+    50% {
+        box-shadow: 0 15px 45px rgba(240, 147, 202, 0.15);
+    }
+}
+
+@keyframes sliderBtnPulse {
+    0% {
+        transform: translateY(-50%) scale(1);
+        box-shadow: 0 5px 15px rgba(240, 147, 202, 0.3);
+    }
+    50% {
+        transform: translateY(-50%) scale(1.15);
+        box-shadow: 0 8px 25px rgba(240, 147, 202, 0.5);
+    }
+    100% {
+        transform: translateY(-50%) scale(1);
+        box-shadow: 0 5px 15px rgba(240, 147, 202, 0.3);
+    }
+}
+
+@keyframes sliderBtnRipple {
+    0% {
+        box-shadow: 0 0 0 0 rgba(240, 147, 202, 0.7);
+    }
+    70% {
+        box-shadow: 0 0 0 15px rgba(240, 147, 202, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(240, 147, 202, 0);
+    }
+}
 
 .hero-content {
     display: flex;
@@ -1504,14 +1783,14 @@ p {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    width: 50px;
-    height: 50px;
-    background: white;
-    color: var(--primary-color);
+    width: 45px;
+    height: 45px;
+    background: var(--primary-color);
+    color: white;
     border: none;
     border-radius: 50%;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-    font-size: 1.2rem;
+    box-shadow: 0 5px 15px rgba(240, 147, 202, 0.3);
+    font-size: 1rem;
     cursor: pointer;
     z-index: 10;
     transition: all 0.3s ease;
@@ -1520,15 +1799,24 @@ p {
     justify-content: center;
 }
 .slider-btn:hover {
-    background: var(--primary-color);
-    color: white;
+    background: var(--primary-hover);
+    transform: translateY(-50%) scale(1.1);
+    box-shadow: 0 8px 20px rgba(240, 147, 202, 0.4);
 }
-.prev-btn { left: -20px; }
-.next-btn { right: -20px; }
+.slider-btn:active {
+    animation: sliderBtnPulse 0.5s ease-out, sliderBtnRipple 0.6s ease-out;
+}
+.slider-btn-prev { left: 15px; }
+.slider-btn-next { right: 15px; }
 
 @media (max-width: 768px) {
-    .prev-btn { left: 0px; }
-    .next-btn { right: 0px; }
+    .slider-btn-prev { left: 10px; }
+    .slider-btn-next { right: 10px; }
+    .slider-btn {
+        width: 40px;
+        height: 40px;
+        font-size: 0.9rem;
+    }
 }
 
 .product-item-clean { 
@@ -1537,20 +1825,88 @@ p {
     background-color: rgba(255, 255, 255, 0.45); 
     backdrop-filter: blur(15px);
     -webkit-backdrop-filter: blur(15px);
-    border-radius: 24px; overflow: hidden; 
-    box-shadow: 0 10px 30px rgba(0,0,0,0.05); border: 1px solid rgba(255,255,255,0.3); 
-    transition: var(--transition); display: flex; flex-direction: column; 
+    border-radius: 24px; 
+    overflow: hidden; 
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05); 
+    border: 1px solid rgba(255,255,255,0.3); 
+    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    display: flex; 
+    flex-direction: column;
+    animation: slideInUp 0.6s cubic-bezier(0.25, 0.8, 0.25, 1) both;
 }
-.product-item-clean:hover { transform: translateY(-8px); box-shadow: 0 15px 40px rgba(0,0,0,0.1); }
+
+.product-item-clean:nth-child(1) { animation-delay: 0.1s; }
+.product-item-clean:nth-child(2) { animation-delay: 0.2s; }
+.product-item-clean:nth-child(3) { animation-delay: 0.3s; }
+.product-item-clean:nth-child(4) { animation-delay: 0.4s; }
+.product-item-clean:nth-child(5) { animation-delay: 0.5s; }
+
+.product-item-clean:hover { 
+    transform: translateY(-12px) scale(1.02);
+    box-shadow: 0 20px 50px rgba(240, 147, 202, 0.25);
+}
 .product-img { 
-    height: 220px; display: flex; align-items: center; justify-content: center; 
-    font-size: 1.5rem; font-weight: 700; color: white; 
+    height: 220px; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    font-size: 1.5rem; 
+    font-weight: 700; 
+    color: white;
+    overflow: hidden;
+    position: relative;
 }
-.product-content { padding: 25px; display: flex; flex-direction: column; flex-grow: 1; }
-.product-content h3 { font-size: 1.3rem; margin-bottom: 10px; color: var(--text-dark); }
-.product-content p { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 20px; flex-grow: 1; }
+
+.product-img img {
+    transition: transform 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.product-item-clean:hover .product-img img {
+    transform: scale(1.08) rotate(2deg);
+}
+.product-content { 
+    padding: 25px; 
+    display: flex; 
+    flex-direction: column; 
+    flex-grow: 1;
+}
+
+.product-content h3 { 
+    font-size: 1.3rem; 
+    margin-bottom: 10px; 
+    color: var(--text-dark);
+    transition: color 0.3s ease;
+}
+
+.product-item-clean:hover .product-content h3 {
+    color: var(--primary-color);
+}
+
+.product-content p { 
+    font-size: 0.9rem; 
+    color: var(--text-muted); 
+    margin-bottom: 20px; 
+    flex-grow: 1;
+    transition: color 0.3s ease;
+}
+
+.product-item-clean:hover .product-content p {
+    color: var(--text-dark);
+}
 .product-footer { display: flex; justify-content: space-between; align-items: center; margin-top: auto; border-top: 1px solid #f5f5f5; padding-top: 15px; }
-.price-clean { font-size: 1.3rem; font-weight: 800; color: var(--text-dark); }
+.price-clean { 
+    font-size: 1.3rem; 
+    font-weight: 800; 
+    color: var(--text-dark);
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.product-item-clean:hover .price-clean {
+    color: var(--primary-color);
+    text-shadow: 0 0 8px rgba(240, 147, 202, 0.5);
+    transform: scale(1.05);
+}
 .product-actions { display: flex; gap: 10px; }
 .action-btn { 
     width: 40px; height: 40px; border-radius: 12px; border: 1px solid #e0e0e0; 

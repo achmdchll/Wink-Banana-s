@@ -46,7 +46,6 @@
                         <li><a href="#lokasi">Lokasi</a></li>
                     </ul>
                 </nav>
-                <a href="pesan.html" class="btn btn-primary btn-pill">Pesan Sekarang</a>
                 <div class="menu-toggle"><i class="fas fa-bars"></i></div>
             </div>
         </header>
@@ -57,18 +56,11 @@
 
             <div class="container hero-content-clean" style="position: relative; z-index: 2;">
                 <div class="hero-text-clean reveal">
-                    <span class="hero-subtitle">Cemilan Premium Khas Nusantara</span>
                     <h1>Sensasi <span class="highlight-clean">Renyah</span><br>di Setiap Gigitan!</h1>
                     <p>Nikmati kelezatan keripik pisang asli pilihan dengan perpaduan bumbu rahasia yang bikin nagih.
                         Tersedia berbagai rasa favoritmu.</p>
                     <div class="hero-buttons-clean">
-                        <a href="pesan.html" class="btn btn-primary btn-pill pulse-btn-rame">Pesan Sekarang</a>
                         <a href="#produk" class="btn btn-outline btn-pill">Lihat Produk</a>
-                    </div>
-                    <div class="hero-social-dots">
-                        <a href="https://www.instagram.com/winkbanana.1?igsh=aXp0a2lycGF3b2pv" target="_blank" rel="noopener noreferrer" title="Instagram"><i class="fab fa-instagram"></i></a>
-                        <a href="https://wa.me/6281232615320" target="_blank" rel="noopener noreferrer" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-                        <a href="https://www.tiktok.com/@winkbanana1?_r=1&_t=ZS-967ub9RIIES" target="_blank" rel="noopener noreferrer"><i class="fab fa-tiktok"></i></a>
                     </div>
                 </div>
                 <div class="hero-image-clean reveal">
@@ -152,7 +144,9 @@
                     <div class="dots-divider"><span></span><span></span><span></span></div>
                 </div>
                 <div class="products-marquee-wrapper" style="position: relative;">
-                    <!-- Left/right slider buttons removed per request -->
+                    <button id="btn-prev-product" class="slider-btn slider-btn-prev" aria-label="Previous product">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
                     <div class="products-grid-clean" id="products-slider">
                         <!-- Product 1 -->
                         <div class="product-item-clean">
@@ -230,6 +224,9 @@
                             </div>
                         </div>
                     </div>
+                    <button id="btn-next-product" class="slider-btn slider-btn-next" aria-label="Next product">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
                 </div>
             </div>
         </section>
@@ -290,10 +287,6 @@
                     </a>
                     <p style="font-size: 1rem; line-height: 1.6; margin-bottom: 25px;">Camilan keripik pisang premium nomor
                         1 di kotamu. Hadir menemani setiap momen bahagiamu bersama keluarga dan teman tercinta.</p>
-                    <div class="social-links">
-                        <a href="https://www.instagram.com/winkbanana.1?igsh=aXp0a2lycGF3b2pv" target="_blank" rel="noopener noreferrer" title="Instagram"><i class="fab fa-instagram"></i></a>
-                        <a href="https://www.tiktok.com/@winkbanana1?_r=1&_t=ZS-967ub9RIIES" title="TikTok" target="_blank" rel="noopener noreferrer"><i class="fab fa-tiktok"></i></a>
-                    </div>
                 </div>
 
                 <div class="footer-links">
@@ -352,17 +345,6 @@
                                 style="color: var(--text-muted); font-size: 0.95rem; text-decoration: none; font-weight: 500;">+62 812-3261-5320</a>
                         </div>
                     </div>
-
-                    <div class="contact-item"
-                        style="display: flex; align-items: flex-start; gap: 15px; padding: 15px; background: linear-gradient(135deg, var(--primary-color), var(--accent-color)); border-radius: 10px; color: white;">
-                        <i class="fab fa-whatsapp" style="font-size: 1.2rem; margin-top: 2px;"></i>
-                        <div>
-                            <strong style="display: block; margin-bottom: 5px;">Pesan WhatsApp</strong>
-                            <a href="https://wa.me/6281232615320"
-                                style="color: white; font-size: 0.95rem; text-decoration: none; font-weight: 500;"
-                                target="_blank">Chat Sekarang →</a>
-                        </div>
-                    </div>
                 </div>
             </div>
 
@@ -372,6 +354,11 @@
                 </div>
             </div>
         </footer>
+
+        <!-- WhatsApp Floating Button -->
+        <a href="https://wa.me/6281232615320" class="whatsapp-btn" target="_blank" rel="noopener noreferrer" title="Chat WhatsApp">
+            <i class="fab fa-whatsapp"></i>
+        </a>
 
         <!-- Scripts -->
         <script src="script.js"></script>

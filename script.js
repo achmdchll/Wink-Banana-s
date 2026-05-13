@@ -24,14 +24,47 @@ document.addEventListener('DOMContentLoaded', () => {
     const header = document.querySelector('.header');
     let isScrolling = false;
 
+    const progressBar = document.getElementById('scroll-progress');
+    const sections = document.querySelectorAll('section[id]');
+    const navLinksList = document.querySelectorAll('.nav-links a');
+
     window.addEventListener('scroll', () => {
         if (!isScrolling) {
             window.requestAnimationFrame(() => {
-                if (window.scrollY > 50) {
+                const scrollTop = window.scrollY;
+                
+                // Header Scrolled State
+                if (scrollTop > 50) {
                     header.classList.add('scrolled');
                 } else {
                     header.classList.remove('scrolled');
                 }
+
+                // Scroll Progress Bar
+                if (progressBar) {
+                    const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+                    const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+                    const scrolled = (winScroll / height) * 100;
+                    progressBar.style.width = scrolled + "%";
+                }
+
+                // ScrollSpy - Active Nav Link
+                let currentSection = "";
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop - 100;
+                    const sectionHeight = section.clientHeight;
+                    if (scrollTop >= sectionTop) {
+                        currentSection = section.getAttribute("id");
+                    }
+                });
+
+                navLinksList.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === `#${currentSection}`) {
+                        link.classList.add('active');
+                    }
+                });
+
                 isScrolling = false;
             });
             isScrolling = true;
@@ -80,7 +113,7 @@ document.addEventListener('DOMContentLoaded', () => {
         revealOnScroll.observe(el);
     });
 
-    // 4. Smooth Scrolling for Anchor Links
+    // 4. Smooth Scrolling for Anchor Links & Click Animations
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             e.preventDefault();
@@ -89,6 +122,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const targetElement = document.querySelector(targetId);
             if (targetElement) {
+                // Click Animation Feedback
+                this.classList.add('clicked');
+                setTimeout(() => this.classList.remove('clicked'), 400);
+
                 // Close mobile menu if open
                 if (navLinks && navLinks.classList.contains('active')) {
                     navLinks.classList.remove('active');
@@ -411,7 +448,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 7. Product Slider Logic
+    // 7. Product Slider Logic (Manual Scroll Only)
     const sliderContainer = document.getElementById('products-slider');
     const btnPrev = document.getElementById('btn-prev-product');
     const btnNext = document.getElementById('btn-next-product');
@@ -419,61 +456,281 @@ document.addEventListener('DOMContentLoaded', () => {
     // Run slider logic if slider exists. Buttons are optional.
     if (sliderContainer) {
         const scrollAmount = 355; // width of card (320px) + gap (35px)
+        const productItems = sliderContainer.querySelectorAll('.product-item-clean');
         
-        // Clone items for seamless loop
-        const originalItems = [...sliderContainer.children];
-        // Append 2 extra sets to guarantee enough width for seamless scrolling
-        for (let i = 0; i < 2; i++) {
-            originalItems.forEach(item => {
-                const clone = item.cloneNode(true);
-                sliderContainer.appendChild(clone);
+        // Enable smooth scrolling
+        sliderContainer.style.scrollBehavior = 'smooth';
+        // Add perspective for 3D effect
+        sliderContainer.style.perspective = '1000px';
+
+        let lastScrollLeft = 0;
+        let scrollDirection = 'right'; // 'right' or 'left'
+
+        // Function to apply sophisticated animation based on visibility and direction
+        function updateProductVisibility() {
+            const scrollLeft = sliderContainer.scrollLeft;
+            const containerWidth = sliderContainer.clientWidth;
+            const containerCenter = scrollLeft + containerWidth / 2;
+            
+            // Determine scroll direction
+            if (scrollLeft > lastScrollLeft) {
+                scrollDirection = 'right';
+            } else if (scrollLeft < lastScrollLeft) {
+                scrollDirection = 'left';
+            }
+            lastScrollLeft = scrollLeft;
+            
+            productItems.forEach((item, index) => {
+                const itemLeft = item.offsetLeft;
+                const itemWidth = item.offsetWidth;
+                const itemCenter = itemLeft + itemWidth / 2;
+                const itemRight = itemLeft + itemWidth;
+                
+                // Remove all animation classes
+                item.classList.remove('fade-in-right', 'fade-out-left', 'fade-in-left', 'fade-out-right', 'scale-down', 'scale-up', 'active');
+                
+                // Calculate distance from center (for parallax effect)
+                const distanceFromCenter = Math.abs(itemCenter - containerCenter);
+                const maxDistance = containerWidth;
+                const normalizedDistance = Math.min(distanceFromCenter / maxDistance, 1);
+                
+                // Check if item is completely in viewport
+                const isFullyVisible = (itemRight > scrollLeft + 50) && (itemLeft < scrollLeft + containerWidth - 50);
+                
+                // Check if item is partially visible
+                const isPartiallyVisible = (itemRight > scrollLeft) && (itemLeft < scrollLeft + containerWidth);
+                
+                // Check if item is to the right or left
+                const isToTheRight = itemLeft >= scrollLeft + containerWidth;
+                const isToTheLeft = itemRight <= scrollLeft;
+                
+                if (isFullyVisible) {
+                    // Item is fully visible - apply scale up and active
+                    item.classList.add('scale-up', 'active');
+                    item.style.opacity = '1';
+                } else if (isPartiallyVisible) {
+                    // Item is partially visible - apply scale down
+                    item.classList.add('scale-down');
+                } else if (isToTheRight) {
+                    // Item is to the right
+                    if (scrollDirection === 'right') {
+                        item.classList.add('fade-in-right');
+                    } else {
+                        item.classList.add('fade-in-left');
+                    }
+                } else if (isToTheLeft) {
+                    // Item is to the left
+                    if (scrollDirection === 'right') {
+                        item.classList.add('fade-out-left');
+                    } else {
+                        item.classList.add('fade-out-right');
+                    }
+                }
             });
         }
-
-        let isInteracting = false;
-        
-        // Continuous smooth scroll
-        let currentScrollPos = sliderContainer.scrollLeft;
-        
-        function autoScroll() {
-            if (!isInteracting) {
-                currentScrollPos += 2; // Speed multiplier (2 is twice as fast as before)
-                sliderContainer.scrollLeft = currentScrollPos;
-                
-                // If we've scrolled past one full original set, loop back seamlessly
-                const singleSetWidth = originalItems.length * scrollAmount;
-                if (currentScrollPos >= singleSetWidth) {
-                    currentScrollPos -= singleSetWidth;
-                    sliderContainer.scrollLeft = currentScrollPos;
-                }
-            } else {
-                // Keep variable synced if user manually scrolls/clicks
-                currentScrollPos = sliderContainer.scrollLeft;
-            }
-            requestAnimationFrame(autoScroll);
-        }
-        requestAnimationFrame(autoScroll);
-
-        // Do not pause on mouse hover — keep continuous scrolling when cursor is over the area.
-        // Keep touch handlers so mobile users can still interact.
-        sliderContainer.addEventListener('touchstart', () => isInteracting = true);
-        sliderContainer.addEventListener('touchend', () => isInteracting = false);
 
         // Attach click handlers only if buttons exist
         if (btnNext) {
             btnNext.addEventListener('click', () => {
-                sliderContainer.style.scrollBehavior = 'smooth';
+                // Add click feedback
+                btnNext.style.filter = 'brightness(0.8)';
+                setTimeout(() => {
+                    btnNext.style.filter = 'brightness(1)';
+                }, 150);
+                
+                lastScrollLeft = sliderContainer.scrollLeft;
                 sliderContainer.scrollBy({ left: scrollAmount, behavior: 'smooth' });
-                setTimeout(() => sliderContainer.style.scrollBehavior = 'auto', 400);
+                
+                // Update visibility with slight delay for smooth effect
+                setTimeout(() => updateProductVisibility(), 100);
             });
         }
 
         if (btnPrev) {
             btnPrev.addEventListener('click', () => {
-                sliderContainer.style.scrollBehavior = 'smooth';
+                // Add click feedback
+                btnPrev.style.filter = 'brightness(0.8)';
+                setTimeout(() => {
+                    btnPrev.style.filter = 'brightness(1)';
+                }, 150);
+                
+                lastScrollLeft = sliderContainer.scrollLeft;
                 sliderContainer.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
-                setTimeout(() => sliderContainer.style.scrollBehavior = 'auto', 400);
+                
+                // Update visibility with slight delay for smooth effect
+                setTimeout(() => updateProductVisibility(), 100);
             });
         }
+
+        // Add scroll event listener for real-time animation
+        let scrollTimeout;
+        sliderContainer.addEventListener('scroll', () => {
+            clearTimeout(scrollTimeout);
+            updateProductVisibility();
+            
+            scrollTimeout = setTimeout(() => {
+                updateProductVisibility();
+            }, 50);
+        }, { passive: true });
+        
+        // Initial visibility update
+        updateProductVisibility();
     }
+
+    // 8. Translation Logic
+    const translations = {
+        id: {
+            "nav-beranda": "Beranda",
+            "nav-keunggulan": "Keunggulan",
+            "nav-produk": "Produk",
+            "nav-tentang": "Tentang",
+            "nav-lokasi": "Lokasi",
+            "loader-subtitle": "Sedang Menyiapkan...",
+            "hero-title": 'Sensasi <span class="highlight-clean">Renyah</span><br>di Setiap Gigitan!',
+            "hero-desc": "Nikmati kelezatan keripik pisang asli pilihan dengan perpaduan bumbu rahasia yang bikin nagih. Tersedia berbagai rasa favoritmu.",
+            "hero-btn": "Lihat Produk",
+            "features-subtitle": "Keunggulan Kami",
+            "features-title": "Mengapa Memilih Wink Banana's?",
+            "features-desc": "Kami menyajikan keripik pisang dengan kualitas terbaik: bahan pilihan, proses higienis, dan rasa yang konsisten. Cocok untuk cemilan sehari-hari maupun oleh-oleh spesial.",
+            "feature-1-title": "100% Organik",
+            "feature-1-desc": "Bahan alami tanpa campuran bahan kimia.",
+            "feature-2-title": "Tanpa Pengawet",
+            "feature-2-desc": "Aman dikonsumsi setiap hari untuk keluarga.",
+            "feature-3-title": "Minyak Kelapa",
+            "feature-3-desc": "Digoreng menggunakan minyak kelapa premium.",
+            "feature-4-title": "Kemasan Praktis",
+            "feature-4-desc": "Dilengkapi zip-lock menjaga kerenyahan.",
+            "feature-5-title": "Varian Rasa",
+            "feature-5-desc": "Banyak pilihan rasa favorit yang lezat.",
+            "feature-6-title": "Renyah & Gurih",
+            "feature-6-desc": "Tekstur sempurna di setiap kepingannya.",
+            "feature-7-title": "Harga Terjangkau",
+            "feature-7-desc": "Kualitas premium dengan harga pas di kantong.",
+            "feature-8-title": "Kualitas Premium",
+            "feature-8-desc": "Diproses dengan standar higienis tinggi.",
+            "products-subtitle": "Koleksi Eksklusif",
+            "products-title": "Varian Rasa Premium Kami",
+            "product-1-title": "Manis Gurih (Original)",
+            "product-1-desc": "Rasa asli pisang berpadu dengan sedikit rasa gurih. Sederhana namun bikin kangen.",
+            "product-2-title": "Cokelat Lumer",
+            "product-2-desc": "Balutan bubuk cokelat premium tebal yang lumer di mulut. Favorit anak muda!",
+            "product-3-title": "Matcha Greentea",
+            "product-3-desc": "Balutan bubuk teh hijau matcha asli Jepang yang harum dan lumer merata di setiap gigitan.",
+            "product-4-title": "Tiramisu Delight",
+            "product-4-desc": "Perpaduan rasa kopi espresso dan krim lembut khas Italia yang membangkitkan selera.",
+            "product-5-title": "Sweet Taro",
+            "product-5-desc": "Rasa ubi ungu taro manis dan creamy yang sangat populer, cocok untuk teman bersantai.",
+            "about-subtitle": "Tentang Wink Banana's",
+            "about-title": "Camilan Tradisional dengan Sentuhan Modern & Premium.",
+            "about-desc-1": "Wink Banana's bermula dari resep keluarga turun-temurun yang kami kembangkan agar bisa dinikmati oleh semua kalangan. Kami hanya menggunakan pisang kepok berkualitas tinggi yang dipanen langsung dari petani lokal pilihan.",
+            "about-desc-2": "Diproses dengan standar higienis tinggi dan digoreng menggunakan minyak kelapa premium, memastikan setiap keping keripik memiliki tekstur yang renyah sempurna tanpa rasa berminyak berlebih.",
+            "location-subtitle": "Kunjungi Kami",
+            "location-title": "Lokasi Toko",
+            "location-desc": "Temukan lokasi toko Wink Banana's terdekat dan nikmati keripik pisang favoritmu langsung.",
+            "footer-tagline": "Keripik Pisang Premium",
+            "footer-desc": "Camilan keripik pisang premium nomor 1 di kotamu. Hadir menemani setiap momen bahagiamu bersama keluarga dan teman tercinta.",
+            "footer-links-title": "Tautan Cepat",
+            "footer-contact-title": "Hubungi Kami",
+            "footer-address-label": "Alamat",
+            "footer-address-value": "Jl. Bunder Jetis, Curahdami<br>Bondowoso, Jawa Timur",
+            "footer-phone-label": "Telepon",
+            "footer-copy": "&copy; 2026 Wink Banana's. Dibuat dengan cinta untuk Indonesia."
+        },
+        en: {
+            "nav-beranda": "Home",
+            "nav-keunggulan": "Features",
+            "nav-produk": "Products",
+            "nav-tentang": "About",
+            "nav-lokasi": "Location",
+            "loader-subtitle": "Preparing...",
+            "hero-title": 'Sensational <span class="highlight-clean">Crunchiness</span><br>in Every Bite!',
+            "hero-desc": "Enjoy the deliciousness of selected original banana chips with a addictive secret spice blend. Various favorite flavors available.",
+            "hero-btn": "View Products",
+            "features-subtitle": "Our Advantages",
+            "features-title": "Why Choose Wink Banana's?",
+            "features-desc": "We serve banana chips with the best quality: selected ingredients, hygienic process, and consistent taste. Perfect for daily snacks or special gifts.",
+            "feature-1-title": "100% Organic",
+            "feature-1-desc": "Natural ingredients without chemical additives.",
+            "feature-2-title": "No Preservatives",
+            "feature-2-desc": "Safe for daily consumption for the whole family.",
+            "feature-3-title": "Coconut Oil",
+            "feature-3-desc": "Fried using premium coconut oil.",
+            "feature-4-title": "Practical Packaging",
+            "feature-4-desc": "Equipped with zip-lock to maintain crunchiness.",
+            "feature-5-title": "Flavor Variants",
+            "feature-5-desc": "Many delicious favorite flavor choices.",
+            "feature-6-title": "Crunchy & Savory",
+            "feature-6-desc": "Perfect texture in every single piece.",
+            "feature-7-title": "Affordable Price",
+            "feature-7-desc": "Premium quality with a price that fits your pocket.",
+            "feature-8-title": "Premium Quality",
+            "feature-8-desc": "Processed with high hygienic standards.",
+            "products-subtitle": "Exclusive Collection",
+            "products-title": "Our Premium Flavor Variants",
+            "product-1-title": "Sweet & Savory (Original)",
+            "product-1-desc": "The original taste of banana combined with a touch of savory. Simple yet addictive.",
+            "product-2-title": "Melting Chocolate",
+            "product-2-desc": "Coated with thick premium chocolate powder that melts in your mouth. Youth's favorite!",
+            "product-3-title": "Matcha Greentea",
+            "product-3-desc": "Coated with original Japanese matcha green tea powder that is fragrant and melts evenly in every bite.",
+            "product-4-title": "Tiramisu Delight",
+            "product-4-desc": "A blend of espresso coffee and typical Italian soft cream flavor that awakens the appetite.",
+            "product-5-title": "Sweet Taro",
+            "product-5-desc": "Sweet and creamy purple taro flavor that is very popular, perfect for relaxing.",
+            "about-subtitle": "About Wink Banana's",
+            "about-title": "Traditional Snack with a Modern & Premium Touch.",
+            "about-desc-1": "Wink Banana's started from a hereditary family recipe that we developed so it can be enjoyed by everyone. We only use high-quality Kepok bananas harvested directly from selected local farmers.",
+            "about-desc-2": "Processed with high hygienic standards and fried using premium coconut oil, ensuring every chip has a perfect crunchy texture without excess oiliness.",
+            "location-subtitle": "Visit Us",
+            "location-title": "Store Location",
+            "location-desc": "Find the nearest Wink Banana's store location and enjoy your favorite banana chips directly.",
+            "footer-tagline": "Premium Banana Chips",
+            "footer-desc": "The number 1 premium banana chips snack in your city. Here to accompany every happy moment with your beloved family and friends.",
+            "footer-links-title": "Quick Links",
+            "footer-contact-title": "Contact Us",
+            "footer-address-label": "Address",
+            "footer-address-value": "Jl. Bunder Jetis, Curahdami<br>Bondowoso, East Java",
+            "footer-phone-label": "Phone",
+            "footer-copy": "&copy; 2026 Wink Banana's. Made with love for Indonesia."
+        }
+    };
+
+    const langBtns = document.querySelectorAll('.lang-btn');
+    const i18nElements = document.querySelectorAll('[data-i18n]');
+
+    function setLanguage(lang) {
+        // Update active button
+        langBtns.forEach(btn => {
+            if (btn.dataset.lang === lang) {
+                btn.classList.add('active');
+            } else {
+                btn.classList.remove('active');
+            }
+        });
+
+        // Update content
+        i18nElements.forEach(el => {
+            const key = el.dataset.i18n;
+            if (translations[lang] && translations[lang][key]) {
+                el.innerHTML = translations[lang][key];
+            }
+        });
+
+        // Update html lang attribute
+        document.documentElement.lang = lang;
+        
+        // Save preference
+        localStorage.setItem('preferredLang', lang);
+    }
+
+    langBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const lang = btn.dataset.lang;
+            setLanguage(lang);
+        });
+    });
+
+    // Load saved language or default to ID
+    const savedLang = localStorage.getItem('preferredLang') || 'id';
+    setLanguage(savedLang);
 });
