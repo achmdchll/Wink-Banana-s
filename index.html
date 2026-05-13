@@ -1,367 +1,399 @@
-    <!DOCTYPE html>
-    <html lang="id">
+<!DOCTYPE html>
+<html lang="id">
 
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Wink Banana's - Keripik Pisang Premium</title>
-        <meta name="description"
-            content="Keripik pisang renyah, gurih, dan lezat dengan berbagai varian rasa. Camilan sempurna untuk segala suasana.">
-        <link rel="stylesheet" href="style.css">
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link
-            href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
-            rel="stylesheet">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    </head>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wink Banana's - Keripik Pisang Premium</title>
+    <meta name="description"
+        content="Keripik pisang renyah, gurih, dan lezat dengan berbagai varian rasa. Camilan sempurna untuk segala suasana.">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
 
-    <body>
-        <!-- Preloader -->
-        <div id="preloader" class="premium-loader">
-            <div class="loader-content">
-                <h1 class="loader-text">Wink <span style="color: var(--primary-color);">Banana's</span></h1>
-                <div class="loader-bar-container">
-                    <div class="loader-bar"></div>
+<body>
+    <!-- Preloader -->
+    <div id="preloader" class="premium-loader">
+        <div class="loader-content">
+            <h1 class="loader-text">Wink <span style="color: var(--primary-color);">Banana's</span></h1>
+            <div class="loader-bar-container">
+                <div class="loader-bar"></div>
+            </div>
+            <p class="loader-subtitle" data-i18n="loader-subtitle">Sedang Menyiapkan...</p>
+        </div>
+    </div>
+
+    <!-- Header / Navbar -->
+    <header class="header">
+        <div class="container navbar">
+            <a href="#" class="logo" style="display: flex; align-items: center;">
+                <img src="assets/images/logo.jpg" alt="Wink Banana's Logo"
+                    style="height: 50px; width: 50px; border-radius: 50%; object-fit: cover; margin-right: 10px;">
+                <span style="font-size: 1.2rem; font-weight: 700; color: var(--text-dark);">Wink<span
+                        style="color: var(--primary-color);"> Banana's</span></span>
+            </a>
+            <nav class="nav-links">
+                <ul>
+                    <li><a href="#beranda" data-i18n="nav-beranda">Beranda</a></li>
+                    <li><a href="#keunggulan" data-i18n="nav-keunggulan">Keunggulan</a></li>
+                    <li><a href="#produk" data-i18n="nav-produk">Produk</a></li>
+                    <li><a href="#tentang" data-i18n="nav-tentang">Tentang</a></li>
+                    <li><a href="#lokasi" data-i18n="nav-lokasi">Lokasi</a></li>
+                </ul>
+            </nav>
+            <div class="nav-actions">
+                <div class="lang-switcher">
+                    <button class="lang-btn active" data-lang="id">ID</button>
+                    <button class="lang-btn" data-lang="en">EN</button>
                 </div>
-                <p class="loader-subtitle">Sedang Menyiapkan...</p>
+                <div class="menu-toggle"><i class="fas fa-bars"></i></div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="beranda" class="hero-clean" style="position: relative; overflow: hidden;">
+        <!-- Floating decorative emojis removed -->
+
+        <div class="container hero-content-clean" style="position: relative; z-index: 2;">
+            <div class="hero-text-clean reveal">
+                <h1 data-i18n="hero-title">Sensasi <span class="highlight-clean">Renyah</span><br>di Setiap Gigitan!
+                </h1>
+                <p data-i18n="hero-desc">Nikmati kelezatan keripik pisang asli pilihan dengan perpaduan bumbu rahasia
+                    yang bikin nagih.
+                    Tersedia berbagai rasa favoritmu.</p>
+                <div class="hero-buttons-clean">
+                    <a href="#produk" class="btn btn-outline btn-pill" data-i18n="hero-btn">Lihat Produk</a>
+                </div>
+            </div>
+            <div class="hero-image-clean reveal">
+                <div class="image-circle-container">
+                    <img src="assets/images/hero.png" alt="Keripik Pisang Gurih">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section (8 Cards Grid) -->
+    <section id="keunggulan" class="features-clean section-bg-white">
+        <div class="container">
+            <div class="section-header-clean reveal" style="text-align: center; margin-bottom: 30px;">
+                <span class="subtitle-clean" data-i18n="features-subtitle">Keunggulan Kami</span>
+                <h2 data-i18n="features-title">Mengapa Memilih Wink Banana's?</h2>
+                <p style="color: var(--text-muted); max-width: 720px; margin: 10px auto 0;" data-i18n="features-desc">
+                    Kami menyajikan keripik
+                    pisang dengan kualitas terbaik: bahan pilihan, proses higienis, dan rasa yang konsisten. Cocok untuk
+                    cemilan sehari-hari maupun oleh-oleh spesial.</p>
+                <div class="dots-divider" style="margin-top: 18px;"><span></span><span></span><span></span></div>
+            </div>
+            <div class="features-grid">
+                <!-- Feature 1 -->
+                <div class="feature-card-clean reveal">
+                    <div class="icon-wrapper"><i class="fas fa-leaf"></i></div>
+                    <h3 data-i18n="feature-1-title">100% Organik</h3>
+                    <p data-i18n="feature-1-desc">Bahan alami tanpa campuran bahan kimia.</p>
+                </div>
+                <!-- Feature 2 -->
+                <div class="feature-card-clean reveal">
+                    <div class="icon-wrapper"><i class="fas fa-shield-alt"></i></div>
+                    <h3 data-i18n="feature-2-title">Tanpa Pengawet</h3>
+                    <p data-i18n="feature-2-desc">Aman dikonsumsi setiap hari untuk keluarga.</p>
+                </div>
+                <!-- Feature 3 -->
+                <div class="feature-card-clean reveal">
+                    <div class="icon-wrapper"><i class="fas fa-tint"></i></div>
+                    <h3 data-i18n="feature-3-title">Minyak Kelapa</h3>
+                    <p data-i18n="feature-3-desc">Digoreng menggunakan minyak kelapa premium.</p>
+                </div>
+                <!-- Feature 4 -->
+                <div class="feature-card-clean reveal">
+                    <div class="icon-wrapper"><i class="fas fa-box-open"></i></div>
+                    <h3 data-i18n="feature-4-title">Kemasan Praktis</h3>
+                    <p data-i18n="feature-4-desc">Dilengkapi zip-lock menjaga kerenyahan.</p>
+                </div>
+                <!-- Feature 5 -->
+                <div class="feature-card-clean reveal">
+                    <div class="icon-wrapper"><i class="fas fa-palette"></i></div>
+                    <h3 data-i18n="feature-5-title">Varian Rasa</h3>
+                    <p data-i18n="feature-5-desc">Banyak pilihan rasa favorit yang lezat.</p>
+                </div>
+                <!-- Feature 6 -->
+                <div class="feature-card-clean reveal">
+                    <div class="icon-wrapper"><i class="fas fa-cookie"></i></div>
+                    <h3 data-i18n="feature-6-title">Renyah & Gurih</h3>
+                    <p data-i18n="feature-6-desc">Tekstur sempurna di setiap kepingannya.</p>
+                </div>
+                <!-- Feature 7 -->
+                <div class="feature-card-clean reveal">
+                    <div class="icon-wrapper"><i class="fas fa-tags"></i></div>
+                    <h3 data-i18n="feature-7-title">Harga Terjangkau</h3>
+                    <p data-i18n="feature-7-desc">Kualitas premium dengan harga pas di kantong.</p>
+                </div>
+                <!-- Feature 8 -->
+                <div class="feature-card-clean reveal">
+                    <div class="icon-wrapper"><i class="fas fa-star"></i></div>
+                    <h3 data-i18n="feature-8-title">Kualitas Premium</h3>
+                    <p data-i18n="feature-8-desc">Diproses dengan standar higienis tinggi.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section id="produk" class="products-clean section-bg-white">
+        <div class="container">
+            <div class="section-header-clean reveal">
+                <span class="subtitle-clean" data-i18n="products-subtitle">Koleksi Eksklusif</span>
+                <h2 data-i18n="products-title">Varian Rasa Premium Kami</h2>
+                <div class="dots-divider"><span></span><span></span><span></span></div>
+            </div>
+            <div class="products-marquee-wrapper" style="position: relative;">
+                <button id="btn-prev-product" class="slider-btn slider-btn-prev" aria-label="Previous product">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <div class="products-grid-clean" id="products-slider">
+                    <!-- Product 1 -->
+                    <div class="product-item-clean">
+                        <div class="product-img original" style="padding: 0;">
+                            <img src="assets/images/original.jpg" alt="Manis Gurih (Original)"
+                                style="width: 100%; height: 100%; object-fit: cover;">
+                        </div>
+                        <div class="product-content">
+                            <h3 data-i18n="product-1-title">Manis Gurih (Original)</h3>
+                            <p data-i18n="product-1-desc">Rasa asli pisang berpadu dengan sedikit rasa gurih. Sederhana
+                                namun bikin kangen.</p>
+                            <div class="product-footer">
+                                <span class="price-clean">Rp 10.000</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Product 2 -->
+                    <div class="product-item-clean">
+                        <div class="product-img coklat" style="padding: 0;">
+                            <img src="assets/images/coklat.jpg" alt="Cokelat Lumer"
+                                style="width: 100%; height: 100%; object-fit: cover;">
+                        </div>
+                        <div class="product-content">
+                            <h3 data-i18n="product-2-title">Cokelat Lumer</h3>
+                            <p data-i18n="product-2-desc">Balutan bubuk cokelat premium tebal yang lumer di mulut.
+                                Favorit anak muda!</p>
+                            <div class="product-footer">
+                                <span class="price-clean">Rp 15.000</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Product 3 -->
+                    <div class="product-item-clean">
+                        <div class="product-img matcha" style="padding: 0;">
+                            <img src="assets/images/matcha.jpg" alt="Matcha Greentea"
+                                style="width: 100%; height: 100%; object-fit: cover;">
+                        </div>
+                        <div class="product-content">
+                            <h3 data-i18n="product-3-title">Matcha Greentea</h3>
+                            <p data-i18n="product-3-desc">Balutan bubuk teh hijau matcha asli Jepang yang harum dan
+                                lumer merata di setiap gigitan.
+                            </p>
+                            <div class="product-footer">
+                                <span class="price-clean">Rp 15.000</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Product 4 -->
+                    <div class="product-item-clean">
+                        <div class="product-img tiramisu" style="padding: 0;">
+                            <img src="assets/images/tiramisu.jpg" alt="Tiramisu Delight"
+                                style="width: 100%; height: 100%; object-fit: cover;">
+                        </div>
+                        <div class="product-content">
+                            <h3 data-i18n="product-4-title">Tiramisu Delight</h3>
+                            <p data-i18n="product-4-desc">Perpaduan rasa kopi espresso dan krim lembut khas Italia yang
+                                membangkitkan selera.</p>
+                            <div class="product-footer">
+                                <span class="price-clean">Rp 15.000</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Product 5 -->
+                    <div class="product-item-clean">
+                        <div class="product-img taro" style="padding: 0;">
+                            <img src="assets/images/taro.jpg" alt="Sweet Taro"
+                                style="width: 100%; height: 100%; object-fit: cover;">
+                        </div>
+                        <div class="product-content">
+                            <h3 data-i18n="product-5-title">Sweet Taro</h3>
+                            <p data-i18n="product-5-desc">Rasa ubi ungu taro manis dan creamy yang sangat populer, cocok
+                                untuk teman bersantai.</p>
+                            <div class="product-footer">
+                                <span class="price-clean">Rp 15.000</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button id="btn-next-product" class="slider-btn slider-btn-next" aria-label="Next product">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="tentang" class="about-clean section-bg-light">
+        <div class="container about-content-clean">
+            <div class="about-text-clean reveal">
+                <span class="subtitle-clean" data-i18n="about-subtitle">Tentang Wink Banana's</span>
+                <h2 data-i18n="about-title">Camilan Tradisional dengan Sentuhan Modern & Premium.</h2>
+                <p data-i18n="about-desc-1">Wink Banana's bermula dari resep keluarga turun-temurun yang kami kembangkan
+                    agar bisa dinikmati oleh
+                    semua kalangan. Kami hanya menggunakan pisang kepok berkualitas tinggi yang dipanen langsung dari
+                    petani lokal pilihan.</p>
+                <p data-i18n="about-desc-2">Diproses dengan standar higienis tinggi dan digoreng menggunakan minyak
+                    kelapa premium, memastikan
+                    setiap keping keripik memiliki tekstur yang renyah sempurna tanpa rasa berminyak berlebih.</p>
+                <a href="#produk" class="btn btn-outline btn-pill mt-4" data-i18n="hero-btn">Lihat Produk</a>
+            </div>
+            <div class="about-image-clean reveal">
+                <div class="img-wrapper-clean">
+                    <!-- Badge pengalaman dihapus sesuai permintaan -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Location Section -->
+    <section id="lokasi" class="lokasi section-bg-white">
+        <div class="container">
+            <div class="section-header-clean reveal">
+                <span class="subtitle-clean" data-i18n="location-subtitle">Kunjungi Kami</span>
+                <h2 data-i18n="location-title">Lokasi Toko</h2>
+                <p style="color: var(--text-muted);" data-i18n="location-desc">Temukan lokasi toko Wink Banana's
+                    terdekat dan nikmati keripik
+                    pisang favoritmu langsung.</p>
+            </div>
+            <div class="map-container reveal">
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d493.9313754936545!2d113.80151206145565!3d-7.952257288304465!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sid!4v1778030150707!5m2!1sen!2sid"
+                    width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="kontak" class="footer-clean">
+        <div class="container footer-content">
+            <div class="footer-about">
+                <a href="#" class="logo footer-logo" style="display: flex; align-items: center; margin-bottom: 20px;">
+                    <img src="assets/images/logo.jpg" alt="Wink Banana's Logo"
+                        style="height: 60px; width: 60px; border-radius: 50%; object-fit: cover; margin-right: 15px; border: 3px solid var(--primary-color);">
+                    <div>
+                        <span
+                            style="font-size: 1.8rem; font-weight: 800; color: var(--text-dark); line-height: 1;">Wink<span
+                                style="color: var(--primary-color);"> Banana's</span></span>
+                        <p style="font-size: 0.9rem; color: var(--text-muted); margin: 0; font-weight: 500;"
+                            data-i18n="footer-tagline">Keripik
+                            Pisang Premium</p>
+                    </div>
+                </a>
+                <p style="font-size: 1rem; line-height: 1.6; margin-bottom: 25px;" data-i18n="footer-desc">Camilan
+                    keripik pisang premium nomor
+                    1 di kotamu. Hadir menemani setiap momen bahagiamu bersama keluarga dan teman tercinta.</p>
+            </div>
+
+            <div class="footer-links">
+                <h3 style="font-size: 1.3rem; font-weight: 700; margin-bottom: 25px; color: var(--text-dark);"
+                    data-i18n="footer-links-title">Tautan
+                    Cepat</h3>
+                <ul style="list-style: none; padding: 0; margin: 0;">
+                    <li style="margin-bottom: 12px;"><a href="#beranda"
+                            style="font-size: 1rem; color: var(--text-muted); text-decoration: none; transition: all 0.3s ease;"><i
+                                class="fas fa-home"
+                                style="margin-right: 10px; color: var(--primary-color); width: 16px;"></i><span
+                                data-i18n="nav-beranda">Beranda</span></a>
+                    </li>
+                    <li style="margin-bottom: 12px;"><a href="#keunggulan"
+                            style="font-size: 1rem; color: var(--text-muted); text-decoration: none; transition: all 0.3s ease;"><i
+                                class="fas fa-star"
+                                style="margin-right: 10px; color: var(--primary-color); width: 16px;"></i><span
+                                data-i18n="nav-keunggulan">Keunggulan</span></a>
+                    </li>
+                    <li style="margin-bottom: 12px;"><a href="#produk"
+                            style="font-size: 1rem; color: var(--text-muted); text-decoration: none; transition: all 0.3s ease;"><i
+                                class="fas fa-box-open"
+                                style="margin-right: 10px; color: var(--primary-color); width: 16px;"></i><span
+                                data-i18n="nav-produk">Produk</span></a>
+                    </li>
+                    <li style="margin-bottom: 12px;"><a href="#tentang"
+                            style="font-size: 1rem; color: var(--text-muted); text-decoration: none; transition: all 0.3s ease;"><i
+                                class="fas fa-info-circle"
+                                style="margin-right: 10px; color: var(--primary-color); width: 16px;"></i><span
+                                data-i18n="nav-tentang">Tentang
+                                Kami</span></a></li>
+                    <li style="margin-bottom: 12px;"><a href="#lokasi"
+                            style="font-size: 1rem; color: var(--text-muted); text-decoration: none; transition: all 0.3s ease;"><i
+                                class="fas fa-map-marker-alt"
+                                style="margin-right: 10px; color: var(--primary-color); width: 16px;"></i><span
+                                data-i18n="nav-lokasi">Lokasi</span></a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="footer-contact">
+                <h3 style="font-size: 1.3rem; font-weight: 700; margin-bottom: 25px; color: var(--text-dark);"
+                    data-i18n="footer-contact-title">Hubungi
+                    Kami</h3>
+                <div class="contact-item"
+                    style="display: flex; align-items: flex-start; gap: 15px; margin-bottom: 20px; padding: 15px; background: #f8f9fa; border-radius: 10px; border-left: 4px solid var(--primary-color);">
+                    <i class="fas fa-map-marker-alt"
+                        style="color: var(--primary-color); font-size: 1.2rem; margin-top: 2px;"></i>
+                    <div>
+                        <strong style="color: var(--text-dark); display: block; margin-bottom: 5px;"
+                            data-i18n="footer-address-label">Alamat</strong>
+                        <span style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.4;"
+                            data-i18n="footer-address-value">Jl. Bunder Jetis,
+                            Curahdami<br>Bondowoso, Jawa Timur</span>
+                    </div>
+                </div>
+
+                <div class="contact-item"
+                    style="display: flex; align-items: flex-start; gap: 15px; margin-bottom: 20px; padding: 15px; background: #f8f9fa; border-radius: 10px; border-left: 4px solid var(--primary-color);">
+                    <i class="fas fa-phone"
+                        style="color: var(--primary-color); font-size: 1.2rem; margin-top: 2px;"></i>
+                    <div>
+                        <strong style="color: var(--text-dark); display: block; margin-bottom: 5px;"
+                            data-i18n="footer-phone-label">Telepon</strong>
+                        <a href="tel:+6281232615320"
+                            style="color: var(--text-muted); font-size: 0.95rem; text-decoration: none; font-weight: 500;">+62
+                            812-3261-5320</a>
+                    </div>
+                </div>
             </div>
         </div>
 
-        <!-- Header / Navbar -->
-        <header class="header">
-            <div class="container navbar">
-                <a href="#" class="logo" style="display: flex; align-items: center;">
-                    <img src="assets/images/logo.jpg" alt="Wink Banana's Logo"
-                        style="height: 50px; width: 50px; border-radius: 50%; object-fit: cover; margin-right: 10px;">
-                    <span style="font-size: 1.2rem; font-weight: 700; color: var(--text-dark);">Wink<span
-                            style="color: var(--primary-color);"> Banana's</span></span>
-                </a>
-                <nav class="nav-links">
-                    <ul>
-                        <li><a href="#beranda">Beranda</a></li>
-                        <li><a href="#keunggulan">Keunggulan</a></li>
-                        <li><a href="#produk">Produk</a></li>
-                        <li><a href="#tentang">Tentang</a></li>
-                        <li><a href="#lokasi">Lokasi</a></li>
-                    </ul>
-                </nav>
-                <div class="menu-toggle"><i class="fas fa-bars"></i></div>
+        <div class="footer-bottom">
+            <div class="footer-bottom-inner">
+                <p class="footer-copy" data-i18n="footer-copy">&copy; 2026 Wink Banana's. Dibuat dengan cinta untuk
+                    Indonesia.</p>
             </div>
-        </header>
+        </div>
+    </footer>
 
-        <!-- Hero Section -->
-        <section id="beranda" class="hero-clean" style="position: relative; overflow: hidden;">
-            <!-- Floating decorative emojis removed -->
+    <!-- WhatsApp Floating Button -->
+    <a href="https://wa.me/6281232615320" class="whatsapp-btn" target="_blank" rel="noopener noreferrer"
+        title="Chat WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
 
-            <div class="container hero-content-clean" style="position: relative; z-index: 2;">
-                <div class="hero-text-clean reveal">
-                    <h1>Sensasi <span class="highlight-clean">Renyah</span><br>di Setiap Gigitan!</h1>
-                    <p>Nikmati kelezatan keripik pisang asli pilihan dengan perpaduan bumbu rahasia yang bikin nagih.
-                        Tersedia berbagai rasa favoritmu.</p>
-                    <div class="hero-buttons-clean">
-                        <a href="#produk" class="btn btn-outline btn-pill">Lihat Produk</a>
-                    </div>
-                </div>
-                <div class="hero-image-clean reveal">
-                    <div class="image-circle-container">
-                        <img src="assets/images/hero.png" alt="Keripik Pisang Gurih">
-                    </div>
-                </div>
-            </div>
-        </section>
+    <!-- Scripts -->
+    <script src="script.js"></script>
+</body>
 
-        <!-- Features Section (8 Cards Grid) -->
-        <section id="keunggulan" class="features-clean section-bg-white">
-            <div class="container">
-                <div class="section-header-clean reveal" style="text-align: center; margin-bottom: 30px;">
-                    <span class="subtitle-clean">Keunggulan Kami</span>
-                    <h2>Mengapa Memilih Wink Banana's?</h2>
-                    <p style="color: var(--text-muted); max-width: 720px; margin: 10px auto 0;">Kami menyajikan keripik
-                        pisang dengan kualitas terbaik: bahan pilihan, proses higienis, dan rasa yang konsisten. Cocok untuk
-                        cemilan sehari-hari maupun oleh-oleh spesial.</p>
-                    <div class="dots-divider" style="margin-top: 18px;"><span></span><span></span><span></span></div>
-                </div>
-                <div class="features-grid">
-                    <!-- Feature 1 -->
-                    <div class="feature-card-clean reveal">
-                        <div class="icon-wrapper"><i class="fas fa-leaf"></i></div>
-                        <h3>100% Organik</h3>
-                        <p>Bahan alami tanpa campuran bahan kimia.</p>
-                    </div>
-                    <!-- Feature 2 -->
-                    <div class="feature-card-clean reveal">
-                        <div class="icon-wrapper"><i class="fas fa-shield-alt"></i></div>
-                        <h3>Tanpa Pengawet</h3>
-                        <p>Aman dikonsumsi setiap hari untuk keluarga.</p>
-                    </div>
-                    <!-- Feature 3 -->
-                    <div class="feature-card-clean reveal">
-                        <div class="icon-wrapper"><i class="fas fa-tint"></i></div>
-                        <h3>Minyak Kelapa</h3>
-                        <p>Digoreng menggunakan minyak kelapa premium.</p>
-                    </div>
-                    <!-- Feature 4 -->
-                    <div class="feature-card-clean reveal">
-                        <div class="icon-wrapper"><i class="fas fa-box-open"></i></div>
-                        <h3>Kemasan Praktis</h3>
-                        <p>Dilengkapi zip-lock menjaga kerenyahan.</p>
-                    </div>
-                    <!-- Feature 5 -->
-                    <div class="feature-card-clean reveal">
-                        <div class="icon-wrapper"><i class="fas fa-palette"></i></div>
-                        <h3>Varian Rasa</h3>
-                        <p>Banyak pilihan rasa favorit yang lezat.</p>
-                    </div>
-                    <!-- Feature 6 -->
-                    <div class="feature-card-clean reveal">
-                        <div class="icon-wrapper"><i class="fas fa-cookie"></i></div>
-                        <h3>Renyah & Gurih</h3>
-                        <p>Tekstur sempurna di setiap kepingannya.</p>
-                    </div>
-                    <!-- Feature 7 -->
-                    <div class="feature-card-clean reveal">
-                        <div class="icon-wrapper"><i class="fas fa-tags"></i></div>
-                        <h3>Harga Terjangkau</h3>
-                        <p>Kualitas premium dengan harga pas di kantong.</p>
-                    </div>
-                    <!-- Feature 8 -->
-                    <div class="feature-card-clean reveal">
-                        <div class="icon-wrapper"><i class="fas fa-star"></i></div>
-                        <h3>Kualitas Premium</h3>
-                        <p>Diproses dengan standar higienis tinggi.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Products Section -->
-        <section id="produk" class="products-clean section-bg-white">
-            <div class="container">
-                <div class="section-header-clean reveal">
-                    <span class="subtitle-clean">Koleksi Eksklusif</span>
-                    <h2>Varian Rasa Premium Kami</h2>
-                    <div class="dots-divider"><span></span><span></span><span></span></div>
-                </div>
-                <div class="products-marquee-wrapper" style="position: relative;">
-                    <button id="btn-prev-product" class="slider-btn slider-btn-prev" aria-label="Previous product">
-                        <i class="fas fa-chevron-left"></i>
-                    </button>
-                    <div class="products-grid-clean" id="products-slider">
-                        <!-- Product 1 -->
-                        <div class="product-item-clean">
-                            <div class="product-img original" style="padding: 0;">
-                                <img src="assets/images/original.jpg" alt="Manis Gurih (Original)"
-                                    style="width: 100%; height: 100%; object-fit: cover;">
-                            </div>
-                            <div class="product-content">
-                                <h3>Manis Gurih (Original)</h3>
-                                <p>Rasa asli pisang berpadu dengan sedikit rasa gurih. Sederhana namun bikin kangen.</p>
-                                <div class="product-footer">
-                                    <span class="price-clean">Rp 10.000</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Product 2 -->
-                        <div class="product-item-clean">
-                            <div class="product-img coklat" style="padding: 0;">
-                                <img src="assets/images/coklat.jpg" alt="Cokelat Lumer"
-                                    style="width: 100%; height: 100%; object-fit: cover;">
-                            </div>
-                            <div class="product-content">
-                                <h3>Cokelat Lumer</h3>
-                                <p>Balutan bubuk cokelat premium tebal yang lumer di mulut. Favorit anak muda!</p>
-                                <div class="product-footer">
-                                    <span class="price-clean">Rp 15.000</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Product 3 -->
-                        <div class="product-item-clean">
-                            <div class="product-img matcha" style="padding: 0;">
-                                <img src="assets/images/matcha.jpg" alt="Matcha Greentea"
-                                    style="width: 100%; height: 100%; object-fit: cover;">
-                            </div>
-                            <div class="product-content">
-                                <h3>Matcha Greentea</h3>
-                                <p>Balutan bubuk teh hijau matcha asli Jepang yang harum dan lumer merata di setiap gigitan.
-                                </p>
-                                <div class="product-footer">
-                                    <span class="price-clean">Rp 15.000</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Product 4 -->
-                        <div class="product-item-clean">
-                            <div class="product-img tiramisu" style="padding: 0;">
-                                <img src="assets/images/tiramisu.jpg" alt="Tiramisu Delight"
-                                    style="width: 100%; height: 100%; object-fit: cover;">
-                            </div>
-                            <div class="product-content">
-                                <h3>Tiramisu Delight</h3>
-                                <p>Perpaduan rasa kopi espresso dan krim lembut khas Italia yang membangkitkan selera.</p>
-                                <div class="product-footer">
-                                    <span class="price-clean">Rp 15.000</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Product 5 -->
-                        <div class="product-item-clean">
-                            <div class="product-img taro" style="padding: 0;">
-                                <img src="assets/images/taro.jpg" alt="Sweet Taro"
-                                    style="width: 100%; height: 100%; object-fit: cover;">
-                            </div>
-                            <div class="product-content">
-                                <h3>Sweet Taro</h3>
-                                <p>Rasa ubi ungu taro manis dan creamy yang sangat populer, cocok untuk teman bersantai.</p>
-                                <div class="product-footer">
-                                    <span class="price-clean">Rp 15.000</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <button id="btn-next-product" class="slider-btn slider-btn-next" aria-label="Next product">
-                        <i class="fas fa-chevron-right"></i>
-                    </button>
-                </div>
-            </div>
-        </section>
-
-        <!-- About Section -->
-        <section id="tentang" class="about-clean section-bg-light">
-            <div class="container about-content-clean">
-                <div class="about-text-clean reveal">
-                    <span class="subtitle-clean">Tentang Wink Banana's</span>
-                    <h2>Camilan Tradisional dengan Sentuhan Modern & Premium.</h2>
-                    <p>Wink Banana's bermula dari resep keluarga turun-temurun yang kami kembangkan agar bisa dinikmati oleh
-                        semua kalangan. Kami hanya menggunakan pisang kepok berkualitas tinggi yang dipanen langsung dari
-                        petani lokal pilihan.</p>
-                    <p>Diproses dengan standar higienis tinggi dan digoreng menggunakan minyak kelapa premium, memastikan
-                        setiap keping keripik memiliki tekstur yang renyah sempurna tanpa rasa berminyak berlebih.</p>
-                    <a href="#produk" class="btn btn-outline btn-pill mt-4">Lebih Lanjut</a>
-                </div>
-                <div class="about-image-clean reveal">
-                    <div class="img-wrapper-clean">
-                        <!-- Badge pengalaman dihapus sesuai permintaan -->
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Location Section -->
-        <section id="lokasi" class="lokasi section-bg-white">
-            <div class="container">
-                <div class="section-header-clean reveal">
-                    <span class="subtitle-clean">Kunjungi Kami</span>
-                    <h2>Lokasi Toko</h2>
-                    <p style="color: var(--text-muted);">Temukan lokasi toko Wink Banana's terdekat dan nikmati keripik
-                        pisang favoritmu langsung.</p>
-                </div>
-                <div class="map-container reveal">
-                    <iframe
-                        src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d493.9313754936545!2d113.80151206145565!3d-7.952257288304465!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sid!4v1778030150707!5m2!1sen!2sid"
-                        width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"
-                        referrerpolicy="no-referrer-when-downgrade"></iframe>
-                </div>
-            </div>
-        </section>
-
-        <!-- Footer -->
-        <footer id="kontak" class="footer-clean">
-            <div class="container footer-content">
-                <div class="footer-about">
-                    <a href="#" class="logo footer-logo" style="display: flex; align-items: center; margin-bottom: 20px;">
-                        <img src="assets/images/logo.jpg" alt="Wink Banana's Logo"
-                            style="height: 60px; width: 60px; border-radius: 50%; object-fit: cover; margin-right: 15px; border: 3px solid var(--primary-color);">
-                        <div>
-                            <span
-                                style="font-size: 1.8rem; font-weight: 800; color: var(--text-dark); line-height: 1;">Wink<span
-                                    style="color: var(--primary-color);"> Banana's</span></span>
-                            <p style="font-size: 0.9rem; color: var(--text-muted); margin: 0; font-weight: 500;">Keripik
-                                Pisang Premium</p>
-                        </div>
-                    </a>
-                    <p style="font-size: 1rem; line-height: 1.6; margin-bottom: 25px;">Camilan keripik pisang premium nomor
-                        1 di kotamu. Hadir menemani setiap momen bahagiamu bersama keluarga dan teman tercinta.</p>
-                </div>
-
-                <div class="footer-links">
-                    <h3 style="font-size: 1.3rem; font-weight: 700; margin-bottom: 25px; color: var(--text-dark);">Tautan
-                        Cepat</h3>
-                    <ul style="list-style: none; padding: 0; margin: 0;">
-                        <li style="margin-bottom: 12px;"><a href="#beranda"
-                                style="font-size: 1rem; color: var(--text-muted); text-decoration: none; transition: all 0.3s ease;"><i
-                                    class="fas fa-home"
-                                    style="margin-right: 10px; color: var(--primary-color); width: 16px;"></i>Beranda</a>
-                        </li>
-                        <li style="margin-bottom: 12px;"><a href="#keunggulan"
-                                style="font-size: 1rem; color: var(--text-muted); text-decoration: none; transition: all 0.3s ease;"><i
-                                    class="fas fa-star"
-                                    style="margin-right: 10px; color: var(--primary-color); width: 16px;"></i>Keunggulan</a>
-                        </li>
-                        <li style="margin-bottom: 12px;"><a href="#produk"
-                                style="font-size: 1rem; color: var(--text-muted); text-decoration: none; transition: all 0.3s ease;"><i
-                                    class="fas fa-box-open"
-                                    style="margin-right: 10px; color: var(--primary-color); width: 16px;"></i>Produk</a>
-                        </li>
-                        <li style="margin-bottom: 12px;"><a href="#tentang"
-                                style="font-size: 1rem; color: var(--text-muted); text-decoration: none; transition: all 0.3s ease;"><i
-                                    class="fas fa-info-circle"
-                                    style="margin-right: 10px; color: var(--primary-color); width: 16px;"></i>Tentang
-                                Kami</a></li>
-                        <li style="margin-bottom: 12px;"><a href="#lokasi"
-                                style="font-size: 1rem; color: var(--text-muted); text-decoration: none; transition: all 0.3s ease;"><i
-                                    class="fas fa-map-marker-alt"
-                                    style="margin-right: 10px; color: var(--primary-color); width: 16px;"></i>Lokasi</a>
-                        </li>
-                    </ul>
-                </div>
-
-                <div class="footer-contact">
-                    <h3 style="font-size: 1.3rem; font-weight: 700; margin-bottom: 25px; color: var(--text-dark);">Hubungi
-                        Kami</h3>
-                    <div class="contact-item"
-                        style="display: flex; align-items: flex-start; gap: 15px; margin-bottom: 20px; padding: 15px; background: #f8f9fa; border-radius: 10px; border-left: 4px solid var(--primary-color);">
-                        <i class="fas fa-map-marker-alt"
-                            style="color: var(--primary-color); font-size: 1.2rem; margin-top: 2px;"></i>
-                        <div>
-                            <strong style="color: var(--text-dark); display: block; margin-bottom: 5px;">Alamat</strong>
-                            <span style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.4;">Jl. Bunder Jetis,
-                                Curahdami<br>Bondowoso, Jawa Timur</span>
-                        </div>
-                    </div>
-
-                    <div class="contact-item"
-                        style="display: flex; align-items: flex-start; gap: 15px; margin-bottom: 20px; padding: 15px; background: #f8f9fa; border-radius: 10px; border-left: 4px solid var(--primary-color);">
-                        <i class="fas fa-phone"
-                            style="color: var(--primary-color); font-size: 1.2rem; margin-top: 2px;"></i>
-                        <div>
-                            <strong style="color: var(--text-dark); display: block; margin-bottom: 5px;">Telepon</strong>
-                            <a href="tel:+6281232615320"
-                                style="color: var(--text-muted); font-size: 0.95rem; text-decoration: none; font-weight: 500;">+62 812-3261-5320</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-                <div class="footer-bottom">
-                <div class="footer-bottom-inner">
-                    <p class="footer-copy">&copy; 2026 Wink Banana's. Dibuat dengan cinta untuk Indonesia.</p>
-                </div>
-            </div>
-        </footer>
-
-        <!-- WhatsApp Floating Button -->
-        <a href="https://wa.me/6281232615320" class="whatsapp-btn" target="_blank" rel="noopener noreferrer" title="Chat WhatsApp">
-            <i class="fab fa-whatsapp"></i>
-        </a>
-
-        <!-- Scripts -->
-        <script src="script.js"></script>
-    </body>
-
-    </html>
+</html>

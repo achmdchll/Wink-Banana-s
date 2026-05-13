@@ -40,6 +40,17 @@ document.addEventListener('DOMContentLoaded', () => {
                     header.classList.remove('scrolled');
                 }
 
+                // Close mobile menu on scroll (User Request: langsung ketutup saat scroll)
+                const menuToggle = document.querySelector('.menu-toggle');
+                const navLinks = document.querySelector('.nav-links');
+                if (scrollTop > 30 && navLinks && navLinks.classList.contains('active')) {
+                    navLinks.classList.remove('active');
+                    const icon = menuToggle.querySelector('i');
+                    if (icon) {
+                        icon.classList.replace('fa-times', 'fa-bars');
+                    }
+                }
+
                 // Scroll Progress Bar
                 if (progressBar) {
                     const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
@@ -634,7 +645,9 @@ document.addEventListener('DOMContentLoaded', () => {
             "footer-address-label": "Alamat",
             "footer-address-value": "Jl. Bunder Jetis, Curahdami<br>Bondowoso, Jawa Timur",
             "footer-phone-label": "Telepon",
-            "footer-copy": "&copy; 2026 Wink Banana's. Dibuat dengan cinta untuk Indonesia."
+            "footer-copy": "&copy; 2026 Wink Banana's. Dibuat dengan cinta untuk Indonesia.",
+            "page-title": "Wink Banana's - Keripik Pisang Premium",
+            "page-desc": "Keripik pisang renyah, gurih, dan lezat dengan berbagai varian rasa. Camilan sempurna untuk segala suasana."
         },
         en: {
             "nav-beranda": "Home",
@@ -691,7 +704,9 @@ document.addEventListener('DOMContentLoaded', () => {
             "footer-address-label": "Address",
             "footer-address-value": "Jl. Bunder Jetis, Curahdami<br>Bondowoso, East Java",
             "footer-phone-label": "Phone",
-            "footer-copy": "&copy; 2026 Wink Banana's. Made with love for Indonesia."
+            "footer-copy": "&copy; 2026 Wink Banana's. Made with love for Indonesia.",
+            "page-title": "Wink Banana's - Premium Banana Chips",
+            "page-desc": "Crispy, savory, and delicious banana chips with various flavor variants. Perfect snack for any occasion."
         }
     };
 
@@ -718,6 +733,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Update html lang attribute
         document.documentElement.lang = lang;
+
+        // Update Title and Meta
+        if (translations[lang]["page-title"]) {
+            document.title = translations[lang]["page-title"];
+        }
+        const metaDesc = document.querySelector('meta[name="description"]');
+        if (metaDesc && translations[lang]["page-desc"]) {
+            metaDesc.setAttribute('content', translations[lang]["page-desc"]);
+        }
         
         // Save preference
         localStorage.setItem('preferredLang', lang);
